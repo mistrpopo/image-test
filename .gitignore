@@ -1,0 +1,5 @@
+/res/
+/target/
+/build/
+/.rust/
+Cargo.lock

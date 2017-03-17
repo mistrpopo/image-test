@@ -1,0 +1,8 @@
+[dependencies]
+image = { path = "../image" }
+rand = "*"
+[package]
+
+name = "image-test"
+version = "1.2.3"
+authors = [ "pd" ]
