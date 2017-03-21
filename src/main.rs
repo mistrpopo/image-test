@@ -7,10 +7,14 @@ use std::env;
 use std::path::Path;
 use std::cmp;
 use std::u8;
+use std::f64;
 
 use image::GenericImage;
 
+fn perc(x: u32, total: u32) -> f64 {
 
+    f64::round(100.0*100.0*(x as f64)/(total as f64))/100.0
+}
 
 fn main() {
     let file = if env::args().count() == 2 {
@@ -76,13 +80,13 @@ fn main() {
             }
         }
     }
-    println!("counted \
-             {} black pixels, {} gray pixels, {} white pixels, \
-             {} yellow pixels, {} magenta pixels, {} cyan pixels, \
-             {} red pixels, {} green pixels, {} blue pixels", 
-        count_black, count_gray, count_white, 
-        count_y, count_m, count_c,
-        count_r, count_g, count_b);
+    let total_pixels = width*height;
+    println!("black : {} \ngray : {} \nwhite : {} \n\
+             yellow : {} \nmagenta : {} \ncyan : {} \n\
+             red : {} \ngreen : {} \nblue : {}", 
+        perc(count_black,total_pixels), perc(count_gray,total_pixels), perc(count_white,total_pixels), 
+        perc(count_y,total_pixels), perc(count_m,total_pixels), perc(count_c,total_pixels),
+        perc(count_r,total_pixels), perc(count_g,total_pixels), perc(count_b,total_pixels));
 //    let ref mut fout = File::create(&Path::new("D:\\Documents\\GitHub\\image-test\\res\\abc.jpg")).unwrap();
 
     // Write the contents of this image to the Writer in PNG format.
